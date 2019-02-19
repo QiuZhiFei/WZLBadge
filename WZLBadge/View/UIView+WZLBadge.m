@@ -14,9 +14,6 @@
 
 #define kWZLBadgeDefaultMaximumBadgeNumber                     99
 
-
-static const CGFloat kWZLBadgeDefaultRedDotRadius = 4.f;
-
 @implementation UIView (WZLBadge)
 
 #pragma mark -- public methods
@@ -158,7 +155,7 @@ static const CGFloat kWZLBadgeDefaultRedDotRadius = 4.f;
     }
     
     if (nil == self.badge) {
-        CGFloat redotWidth = kWZLBadgeDefaultRedDotRadius *2;
+        CGFloat redotWidth = self.zf_redotWidth;
         CGRect frm = CGRectMake(CGRectGetWidth(self.frame), -redotWidth, redotWidth, redotWidth);
         self.badge = [[UILabel alloc] initWithFrame:frm];
         self.badge.textAlignment = NSTextAlignmentCenter;
@@ -325,6 +322,22 @@ static const CGFloat kWZLBadgeDefaultRedDotRadius = 4.f;
     }
     [self removeAnimation];
     [self beginAnimation];
+}
+
+- (CGFloat)zf_redotWidth
+{
+  id obj = objc_getAssociatedObject(self, &badgeRedotWidthKey);
+  if(obj != nil && [obj isKindOfClass:[NSNumber class]]) {
+    return [obj floatValue];
+  }
+  
+  return 8;
+}
+
+- (void)setZf_redotWidth:(CGFloat)zf_redotWidth
+{
+  NSNumber *numObj = @(zf_redotWidth);
+  objc_setAssociatedObject(self, &badgeRedotWidthKey, numObj, OBJC_ASSOCIATION_RETAIN);
 }
 
 - (CGRect)badgeFrame

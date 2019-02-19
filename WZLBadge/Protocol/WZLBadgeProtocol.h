@@ -31,6 +31,7 @@ static char badgeFrameKey;
 static char badgeCenterOffsetKey;
 static char badgeMaximumBadgeNumberKey;
 static char badgeRadiusKey;
+static char badgeRedotWidthKey;
 
 typedef NS_ENUM(NSUInteger, WBadgeStyle)
 {
@@ -68,6 +69,8 @@ typedef NS_ENUM(NSUInteger, WBadgeAnimType)
 
 @property (nonatomic, assign) WBadgeAnimType aniType;               /* NOTE that this is not animation type of badge's
                                                                         appearing, nor  hidding*/
+
+@property (nonatomic, assign) CGFloat zf_redotWidth;
 
 @property (nonatomic, assign) NSInteger badgeMaximumBadgeNumber;    /*for WBadgeStyleNumber style badge,
                                                                      if badge value is above badgeMaximumBadgeNumber,
